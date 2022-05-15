@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: backend-user
+  name: backend-user
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend-user
+  template:
+    metadata:
+      labels:
+        app: backend-user
+    spec:
+      containers:
+        - image: nhuanlh/udagram-api-user:v1
+          name: backend-user
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "2048Mi"
+              cpu: "500m"
+          env:
+            - name: URL
+              value: http://localhost:8100
+            - name: AWS_BUCKET
+              value: project3-041658881670-dev
+            - name: AWS_PROFILE
+              value: default
+            - name: AWS_REGION
+              value: us-east-1
+            - name: JWT_SECRET
+              value: testing
+            - name: POSTGRES_DB
+              value: postgres
+            - name: POSTGRES_HOST
+              value: database-1.czcy7x8xwnie.us-east-1.rds.amazonaws.com
+            - name: POSTGRES_PASSWORD
+              value: Huunhuan123
+            - name: POSTGRES_USERNAME
+              value: NhuanLH
+          volumeMounts:
+            - name: aws-secret
+              mountPath: "/root/.aws/"
+              readOnly: true
+      restartPolicy: Always
+      volumes:
+        - name: aws-secret
+          secret:
+            secretName: aws-secret
