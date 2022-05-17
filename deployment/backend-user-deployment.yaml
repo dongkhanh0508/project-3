@@ -15,20 +15,20 @@ spec:
         app: backend-user
     spec:
       containers:
-        - image: nhuanlh/udagram-api-user:v1
+        - image: khanhnd33/udagram-api-user:v1
           name: backend-user
           resources:
             requests:
-              memory: "128Mi"
-              cpu: "250m"
+              memory: '128Mi'
+              cpu: '250m'
             limits:
-              memory: "2048Mi"
-              cpu: "500m"
+              memory: '2048Mi'
+              cpu: '500m'
           env:
             - name: URL
               value: http://localhost:8100
             - name: AWS_BUCKET
-              value: project3-041658881670-dev
+              value: pj3khanhnd-809923822747-dev
             - name: AWS_PROFILE
               value: default
             - name: AWS_REGION
@@ -38,14 +38,14 @@ spec:
             - name: POSTGRES_DB
               value: postgres
             - name: POSTGRES_HOST
-              value: database-1.czcy7x8xwnie.us-east-1.rds.amazonaws.com
+              value: database-1.cvvj12geddbd.us-east-1.rds.amazonaws.com
             - name: POSTGRES_PASSWORD
-              value: Huunhuan123
+              value: 0939761499Kt
             - name: POSTGRES_USERNAME
-              value: NhuanLH
+              value: postgres
           volumeMounts:
             - name: aws-secret
-              mountPath: "/root/.aws/"
+              mountPath: '/root/.aws/'
               readOnly: true
       restartPolicy: Always
       volumes:
